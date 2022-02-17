@@ -1,0 +1,1 @@
+To run use `python3 conways.py`
