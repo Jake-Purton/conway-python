@@ -7,7 +7,7 @@ map = [
         [0,0,0,0,0,0,0,0,0,0], 
         [0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0], 
+        [0,0,0,1,0,1,0,0,0,0], 
         [0,0,0,0,0,0,0,0,0,0], 
         [0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0],
@@ -91,12 +91,15 @@ def process_cells(map):
                 #print(row, col, "dies")
                 new_map[row][col] = 0
 
-
-    return new_map
+    if new_map == map:
+        return False
+    else:
+        return new_map
 
 scr = init_curses()
 the_map = map
-while True:
+
+while the_map != False:
     the_map = process_cells(the_map)
     s = draw_map(the_map)
     #print(s)
