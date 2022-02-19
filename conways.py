@@ -2,14 +2,16 @@ import time
 import curses
 import random
 
+changing = True
+
 map = [
         [0,0,0,0,0,0,0,0,0,0], 
         [0,0,0,0,0,0,0,0,0,0], 
         [0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,1,0,1,0,0,0,0], 
-        [0,0,0,0,0,0,0,0,0,0], 
-        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,1,0,1,0,0,0,0,0], 
+        [0,0,0,0,1,0,0,0,0,0], 
+        [0,0,0,1,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0]]
@@ -91,15 +93,16 @@ def process_cells(map):
                 #print(row, col, "dies")
                 new_map[row][col] = 0
 
-    if new_map == map:
-        return False
-    else:
-        return new_map
+    return new_map
 
 scr = init_curses()
 the_map = map
 
-while the_map != False:
+while changing == True:
+
+    if the_map == process_cells (the_map):
+        changing = False
+
     the_map = process_cells(the_map)
     s = draw_map(the_map)
     #print(s)
